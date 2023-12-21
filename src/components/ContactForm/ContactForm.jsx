@@ -14,23 +14,21 @@ const ContactForm = () => {
     setFormData((prevForm) => ({ ...prevForm, [name]: value }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const isDuplicate =
-        formData.name && contacts.some((contact) => contact.name.toLowerCase() === formData.name.toLowerCase());
-
-      if (isDuplicate) {
-        alert(`${formData.name} is already in contacts`);
-        reset();
-      } else {
-        await dispatch(addContact(formData));
-        reset();
-      }
-    } catch (error) {
-      console.error(error);
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const isDuplicate = formData.name && contacts.some((contact) => contact.name.toLowerCase() === formData.name.toLowerCase());
+    if (isDuplicate) {
+      alert(`${formData.name} is already in contacts`);
+      reset();
+    } else {
+      dispatch(addContact(formData));
+      reset();
     }
-  };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   const reset = () => {
     setFormData({ name: '', number: '' });

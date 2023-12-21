@@ -9,7 +9,6 @@ const ContactList = () => {
     if (!state || !state.contacts) {
       return []; 
     }
-
     const filtered = state.contacts.filter((contact) =>
       contact.name.toLowerCase().includes(state.filter.toLowerCase())
     );
